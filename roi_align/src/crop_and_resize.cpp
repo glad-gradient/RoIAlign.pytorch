@@ -2,7 +2,6 @@
 //#include <TH/TH.h>
 #include <stdio.h>
 #include <math.h>
-//#include <format>
 
 using namespace std;
 
