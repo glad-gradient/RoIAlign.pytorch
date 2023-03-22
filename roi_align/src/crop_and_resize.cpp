@@ -2,6 +2,9 @@
 //#include <TH/TH.h>
 #include <stdio.h>
 #include <math.h>
+#include <format>
+
+using namespace std;
 
 namespace torch {
 void CropAndResizePerBox(
@@ -38,8 +41,11 @@ void CropAndResizePerBox(
 
         const int b_in = box_index_data[b];
         if (b_in < 0 || b_in >= batch_size) {
-            printf("Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
-            exit(-1);
+            throw std::invalid_argument("CropAndResizePerBox: Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
+            //throw std::invalid_argument("CropAndResizePerBox: Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
+//            std::format("sometext {} sometext {}", somevar, somevar);
+            //printf("Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
+            //exit(-1);
         }
 
         const float height_scale =
@@ -213,8 +219,9 @@ void crop_and_resize_backward(
 
         const int b_in = box_index_data[b];
         if (b_in < 0 || b_in >= batch_size) {
-            printf("Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
-            exit(-1);
+            throw std::invalid_argument("crop_and_resize_backward: Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
+            //printf("Error: batch_index %d out of range [0, %d)\n", b_in, batch_size);
+            //exit(-1);
         }
 
         const float height_scale =
